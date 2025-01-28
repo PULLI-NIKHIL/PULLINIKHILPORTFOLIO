@@ -678,16 +678,51 @@ uncover actionable insights to optimize coffee shop operations and increase prof
         If you'd like to chat about me joining your Team/Company, feel free to email me using the form below.
     </p>
 </div>
-<div id="contact-section" class="contact">
-    <h2>Contact Me</h2>
-    <hr class="divider">
-    <form class="contact-form" action="https://your-form-handler-url.com" method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" placeholder="Message" rows="5" required></textarea>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+    <div class="contact-form">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <p class="error" id="errorMessage"></p>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent page refresh
+            
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (!name || !email || !message) {
+                errorMessage.textContent = "All fields are required!";
+                return;
+            }
+
+            try {
+                let response = await fetch("https://your-form-handler-url.com", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Unable to send message. Please check your connection.");
+                }
+
+                alert("Message sent successfully!");
+                document.getElementById("contactForm").reset(); // Clear form
+                errorMessage.textContent = ""; // Clear error message
+            } catch (error) {
+                errorMessage.textContent = error.message;
+            }
+        });
+    </script>
+
 <div class="social-icons">
     <a href="https://www.linkedin.com/in/pulli-nikhil-828a192ab/" target="_blank" class="icon-link">
         <img src="https://i.pinimg.com/736x/d1/7d/65/d17d655ee23eed75fbcd2fee963efb20.jpg" alt="LinkedIn">
