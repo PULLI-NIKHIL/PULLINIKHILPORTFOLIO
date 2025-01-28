@@ -681,14 +681,30 @@ uncover actionable insights to optimize coffee shop operations and increase prof
 <div id="contact-section" class="contact">
     <h2>Contact Me</h2>
     <hr class="divider">
-    <form class="contact-form" action="https://your-form-handler-url.com" method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" placeholder="Message" rows="5" required></textarea>
-        <button type="submit">Submit</button>
-    </form>
+    
+    <!-- Contact Form -->
+    <div id="form-container">
+        <form class="contact-form"
+              action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdGX17ro11KdEn8kS75TYZrMypRO-oJgdlvlUn_XMt0LAaq5A/formResponse"
+              method="POST"
+              target="hidden_iframe"
+              onsubmit="showConfirmationMessage();">
+            
+            <input type="text" name="entry.1054247339" placeholder="Name" required>
+            <input type="email" name="entry.1531249880" placeholder="Email" required>
+            <textarea name="entry.633688174" placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
+    <!-- Confirmation Message (Initially Hidden) -->
+    <div id="confirmation-message" style="display: none;">
+        <h3>Thank you! Your message has been sent successfully. ✅</h3>
+    </div>
 </div>
+
+<!-- Hidden iframe to prevent redirection -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"></iframe>
 <div class="social-icons">
     <a href="https://www.linkedin.com/in/pulli-nikhil-828a192ab/" target="_blank" class="icon-link">
         <img src="https://i.pinimg.com/736x/d1/7d/65/d17d655ee23eed75fbcd2fee963efb20.jpg" alt="LinkedIn">
@@ -703,6 +719,14 @@ uncover actionable insights to optimize coffee shop operations and increase prof
         <img src="https://i.pinimg.com/736x/a1/7c/fa/a17cfa1ed27c27cede396e8657de9405.jpg" alt="Email">
     </a>
 </div>    
-
+<script>
+    function showConfirmationMessage() {
+        // Hide the form
+        document.getElementById("form-container").style.display = "none";
+        
+        // Show the confirmation message
+        document.getElementById("confirmation-message").style.display = "block";
+    }
+</script>
 </body>
 </html>
